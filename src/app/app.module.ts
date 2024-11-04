@@ -4,6 +4,8 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UnitTypeComponent } from './components/unit-type/unit-type.component';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -12,11 +14,14 @@ import { UnitTypeComponent } from './components/unit-type/unit-type.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch())
   ],
+
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
