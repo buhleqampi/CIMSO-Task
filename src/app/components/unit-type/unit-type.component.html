@@ -1,0 +1,14 @@
+<div class="container">
+    <h1>Unit Types</h1>
+    <div *ngIf="loading">Loading...</div>
+    <div *ngFor="let unitType of unitTypes" class="unit-type">
+      <h2>{{ unitType.UnitTypeDescription }}</h2>
+      <p>Code: {{ unitType.UnitTypeCode }}</p>
+      <p>Category: {{ unitType.UnitTypeCategory }}</p>
+      <p>Maximum Occupants: {{ unitType.MaximumOccupants }}</p>
+      <p>Adults: {{ unitType.MaximumAdults }}</p>
+      <p>Children: {{ unitType.MaximumChildren }}</p>
+      <p>Units Available: {{ unitType.UnitCount }}</p>
+    </div>
+  </div>
+  
