@@ -10,21 +10,23 @@ import { Unittype } from '../../interfaces/unittype';
 export class UnitTypeComponent implements OnInit {
   unitTypes: Unittype[] = [];
   loading: boolean = true;
+  test: any
+
+  unitTypeInfo: any;
 
   constructor(private unitTypeService: UnitTypeService) {}
 
   ngOnInit(): void {
-    this.unitTypeService.getUnitTypes().subscribe({
-      next: (data) => {
-        if (data.error_code === 0) {
-          this.unitTypes = data.payload.UnitTypes;
-        }
-        this.loading = false;
+    this.unitTypeService.getUnitTypeInfo().subscribe(
+      data => {
+        this.unitTypeInfo = data;
+        console.log(data);
       },
-      error: (error) => {
-        console.error('Error fetching data:', error);
-        this.loading = false;
+      error => {
+        console.error('Error fetching unit type info:', error);
       }
-    });
+    );
   }
+
+
 }
