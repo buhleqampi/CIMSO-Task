@@ -15,7 +15,7 @@ export class BinaryRequestService {
   getBinaryRequest(objectId: string) : Observable<any> {
 
     const body = { hg_code: "demo", payload: {"Object Unique ID": objectId } }
-
+    
     const headers = new HttpHeaders({
       'Authorization': JSON.stringify({
         "Client Login ID": "CiMSO.dev",
@@ -25,7 +25,9 @@ export class BinaryRequestService {
       'Content-Type': 'application/json',
     });
 
-    return this.http.post(this.baseUrl,body, {headers})
+    return this.http.post(this.baseUrl,body, { headers, responseType:'text'});
 
   }
+
+  
   }

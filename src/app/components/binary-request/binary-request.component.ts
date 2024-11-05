@@ -26,16 +26,24 @@ export class BinaryRequestComponent implements OnInit {
 
     if(this.objectId) {
 
-      this.binaryRequestServ.getBinaryRequest(this.objectId).subscribe(
-        (response) => {
-          if (response && response.payload) {
+      this.binaryRequestServ.getBinaryRequest(this.objectId).subscribe({
+        next: (response:any) => {
+          // if (response && response.payload) {
 
-            this.imageDataUrl = `data:image/jpeg;base64, ${response.payload}`;
-          }
+          //   this.imageDataUrl = `data:image/jpeg;base64, ${response.payload}`;
+          // }
+          // },
+          // (error) => {
+          //   console.error('Error fetching binary request:', error);
+          // }
+            this.imageDataUrl = `data:image/jpeg;base64,${response}`;
+            console.log("Hello",response);
           },
-          (error) => {
+          error: (error) => {
             console.error('Error fetching binary request:', error);
           }
+      }
+        
         );
       }
     }
