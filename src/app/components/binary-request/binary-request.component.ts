@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { BinaryRequestService } from '../../services/binary-request.service';
 
 @Component({
@@ -7,6 +7,9 @@ import { BinaryRequestService } from '../../services/binary-request.service';
   styleUrl: './binary-request.component.css'
 })
 export class BinaryRequestComponent implements OnInit {
+
+  @Input() objectId: string = '';
+  imageDataUrl: string | null = null;
 
   binaryRequest:any;
 
@@ -21,15 +24,19 @@ export class BinaryRequestComponent implements OnInit {
 
   getbinaryRequests(){
 
-    this.binaryRequestServ.getBinaryRequest().subscribe({
-    next:(res_data) => {
-      console.log("Binary request retrieved!!!" , res_data)
-      this.BinaryRequest = res_data.error_code
-    },
-    error: (err) => {
-      console.error('Error fetching binary request:', err);
-    }
-    })
-  }
+    if(this.objectId) {
 
+      this.binaryRequestServ.getBinaryRequest(this.objectId).subscribe(
+        (response) => {
+          if (response && response.payload) {
+
+            this.imageDataUrl = `data:image/jpeg;base64, ${response.payload}`;
+          }
+          },
+          (error) => {
+            console.error('Error fetching binary request:', error);
+          }
+        );
+      }
+    }
 }

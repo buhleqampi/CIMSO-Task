@@ -12,9 +12,9 @@ export class BinaryRequestService {
 
   constructor(private http: HttpClient) { }
 
-  getBinaryRequest() : Observable<any> {
+  getBinaryRequest(objectId: string) : Observable<any> {
 
-    const body = { hg_code: "demo", payload: {"Object Unique ID": "0200000044B400800000000000000000"} }
+    const body = { hg_code: "demo", payload: {"Object Unique ID": objectId } }
 
     const headers = new HttpHeaders({
       'Authorization': JSON.stringify({
