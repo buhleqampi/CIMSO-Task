@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { UnitTypeComponent } from './components/unit-type/unit-type.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { BinaryRequestComponent } from './components/binary-request/binary-request.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UnitTypeComponent,
-    BookingsComponent
+    BookingsComponent,
+    BinaryRequestComponent
   ],
   imports: [
     BrowserModule,
