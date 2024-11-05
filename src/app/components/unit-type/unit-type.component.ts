@@ -8,25 +8,35 @@ import { Unittype } from '../../interfaces/unittype';
   styleUrls: ['./unit-type.component.css']
 })
 export class UnitTypeComponent implements OnInit {
-  unitTypes: Unittype[] = [];
-  loading: boolean = true;
-  test: any
+  // unitTypes: Unittype[] = [];
+  // loading: boolean = true;
+  // test: any
+  unitTypes:any;
 
   unitTypeInfo: any;
 
   constructor(private unitTypeService: UnitTypeService) {}
 
   ngOnInit(): void {
-    this.unitTypeService.getUnitTypeInfo().subscribe(
-      data => {
-        this.unitTypeInfo = data;
-        console.log(data);
-      },
-      error => {
-        console.error('Error fetching unit type info:', error);
-      }
-    );
+    this.getUnitTypes()
+
   }
 
 
-}
+  getUnitTypes(){
+
+  this.unitTypeService.getUnitTypeInfo().subscribe({
+  next:(res_data) => {
+  console.log("Unit Type Info Data Retrieved!!! ", res_data)
+  this.unitTypeInfo = res_data.error_code
+  },
+  error: (err) => {
+  console.error('Error fetching unit type info:', err);
+  }
+
+  })
+
+  }
+  }
+
+
