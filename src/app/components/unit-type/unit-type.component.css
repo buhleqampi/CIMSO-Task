@@ -1,4 +1,4 @@
-.container {
+/* .container {
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
@@ -14,5 +14,41 @@
   
   .unit-type h2 {
     margin-top: 0;
+  }
+   */
+
+   .flex {
+    display: flex;
+    flex-direction: row;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .gap-6 {
+    gap: 1.5rem;
+  }
+  .max-w-3xl {
+    max-width: 48rem;
+  }
+  .border {
+    border-width: 1px;
+  }
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  .shadow-lg {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .bg-white {
+    background-color: white;
+  }
+  .bg-gray-100 {
+    background-color: #f3f4f6;
+  }
+  .text-gray-500 {
+    color: #6b7280;
   }
   

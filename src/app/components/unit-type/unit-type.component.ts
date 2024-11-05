@@ -12,7 +12,7 @@ export class UnitTypeComponent implements OnInit {
   // unitTypes: Unittype[] = [];
   // loading: boolean = true;
   // test: any
-  unitTypes:any;
+  unitTypes:Unittype[] = []
 
   unitTypeInfo: any;
 
@@ -28,20 +28,32 @@ export class UnitTypeComponent implements OnInit {
     console.log(id)
   }
 
-  getUnitTypes(){
+  // getUnitTypes(){
 
-  this.unitTypeService.getUnitTypeInfo().subscribe({
-  next:(res_data) => {
-  console.log("Unit Type Info Data Retrieved!!! ", res_data)
-  this.unitTypeInfo = res_data.error_code
-  },
-  error: (err) => {
-  console.error('Error fetching unit type info:', err);
+  // this.unitTypeService.getUnitTypeInfo().subscribe({
+  // next:(res_data) => {
+  // console.log("Unit Type Info Data Retrieved!!! ", res_data)
+  // this.unitTypeInfo = res_data.error_code
+  // },
+  // error: (err) => {
+  // console.error('Error fetching unit type info:', err);
+  // }
+
+  // })
+
+  // }
+  getUnitTypes() {
+    this.unitTypeService.getUnitTypeInfo().subscribe({
+      next: (res_data) => {
+        console.log("Unit Type Info Data Retrieved!!! ", res_data);
+        this.unitTypeInfo = res_data.data || []; 
+      },
+      error: (err) => {
+        console.error('Error fetching unit type info:', err);
+      }
+    });
   }
-
-  })
-
-  }
+  
   }
 
 

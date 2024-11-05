@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BookingsService } from '../../services/bookings.service';
+import { Bookings } from '../../interfaces/bookings';
 
 @Component({
   selector: 'app-bookings',
@@ -7,7 +8,7 @@ import { BookingsService } from '../../services/bookings.service';
   styleUrl: './bookings.component.css'
   })
 export class BookingsComponent {
-  bookings: any[] = [];
+  bookings: Bookings[] = [];
 
   constructor(private bookingService: BookingsService) {}
 

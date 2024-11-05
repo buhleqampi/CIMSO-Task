@@ -1,23 +1,18 @@
 export interface Unittype {
 
-    UnitTypeID: number;
-    UnitTypeCode: string;
-    UnitTypeDescription: string;
-    UnitTypeCategory: string;
-    MaximumOccupants: number;
-    MaximumAdults: number;
-    MaximumChildren: number;
-    LocationID: number;
-    UnitTypeRole: string;
-    UnitCount: number;
-    RecordMarkedDeleted: boolean;
-    UnitTypeImageUIDs: string[];
+    "Unit Type ID": number;
+    "Unit Type Code": string;
+    "Unit Type Description": string;
+    "Unit Type Category": string;
+    "Maximum Occupants": number;
+    "Maximum Adults": number;
+    "Maximum Children": number;
+    "Marketing Description": string
+    "Location ID": number;
+    "Unit Count": number;
+    "Unit Type Image UIDs": string[];
+
   }
   
-  export interface ApiResponse {
-    payload: {
-      UnitTypes: Unittype[];
-    };
-    error_code: number;
-  }
+ 
 
