@@ -7,7 +7,7 @@ import { BookingsService } from '../../services/bookings.service';
   styleUrl: './bookings.component.css'
   })
 export class BookingsComponent {
-  bookings: any;
+  bookings: any[] = [];
 
   constructor(private bookingService: BookingsService) {}
 
@@ -19,10 +19,17 @@ export class BookingsComponent {
 
   this.bookingService.getAllBookings().subscribe({
   next: (res_data)=>{
-   //localStorage.length
-  console.log("Bookings Data Retrieved!! ",res_data)
-  this.bookings = res_data.error_code
-  },
+  console.log("Bookings Data Retrieved!! ",res_data.payload["Booking Units"])
+
+  this.bookings = res_data.payload["Booking Units"]
+
+  // this.bookings = res_data.slice(0, 4).map((booking: any) => ({
+
+  //   id: booking["Booking Unit ID"],
+  //   name: booking["Booking Unit Name"],
+  //   number: booking["Booking Unit Number"]
+  // }));
+},
   error: (err)=>{
   console.error("Could get bookings!", err)
 
