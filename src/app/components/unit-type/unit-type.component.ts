@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UnitTypeService } from '../../services/unit-type.service';
 import { Unittype } from '../../interfaces/unittype';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-unit-type',
@@ -15,13 +16,17 @@ export class UnitTypeComponent implements OnInit {
 
   unitTypeInfo: any;
 
-  constructor(private unitTypeService: UnitTypeService) {}
+  constructor(private unitTypeService: UnitTypeService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.getUnitTypes()
 
   }
 
+  getOne(){
+    const id = this.route.snapshot.paramMap.get('id')
+    console.log(id)
+  }
 
   getUnitTypes(){
 

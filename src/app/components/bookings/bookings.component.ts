@@ -21,7 +21,7 @@ export class BookingsComponent {
   next: (res_data)=>{
   console.log("Bookings Data Retrieved!! ",res_data.payload["Booking Units"])
 
-  this.bookings = res_data.payload["Booking Units"]
+  this.bookings = res_data.payload["Booking Units"].slice(0,10)
 
   // this.bookings = res_data.slice(0, 4).map((booking: any) => ({
 
