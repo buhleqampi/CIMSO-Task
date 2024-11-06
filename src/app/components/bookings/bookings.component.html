@@ -1,44 +1,38 @@
-<!-- <p>sfdsdsds{{error_code}}</p>
-
-<div class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3">
-  <div *ngFor="let booking of filteredBookings" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    
-    <div class="p-5">
-      <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-        Booking Info
-      </h5>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        Booking Name: {{ booking["Booking Unit Name"] }}
-      </p>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        Unit Number: {{ booking["Booking Unit Number"] }}
-      </p>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        Booking Unit ID: {{ booking["Booking Unit ID"] }}
-      </p>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        Unit Type ID: {{ booking["Unit Type ID"] }}
-      </p>
-      
-    </div>
-  </div>
-</div> -->
-
 <div *ngIf="errorMessage" class="text-center text-red-600 text-lg mt-4">
   {{ errorMessage }}
 </div>
 
-<div *ngIf="!errorMessage && filteredBookings.length > 0" class="flex flex-wrap justify-center gap-8">
-  <div *ngFor="let booking of filteredBookings" class="border p-4 rounded-lg shadow-lg max-w-sm bg-white">
-    <p><strong>Booking Unit Name:</strong> {{ booking['Booking Unit Name'] }}</p>
-    <p><strong>Booking Unit Number:</strong> {{ booking['Booking Unit Number'] }}</p>
-    <p><strong>Booking Unit ID:</strong> {{ booking['Booking Unit ID'] }}</p>
-    <p><strong>Unit Type ID:</strong> {{ booking['Unit Type ID'] }}</p>
-   
+<div
+  *ngIf="!errorMessage && filteredBookings.length > 0"
+  class="flex flex-wrap justify-center gap-8 pt-8 pb-8"
+>
+  <div
+    *ngFor="let booking of filteredBookings"
+    class="border border-gray-300 rounded-lg shadow-lg p-6 max-w-sm bg-whitesmoke"
+    style="
+      background-color: whitesmoke;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    "
+  >
+    <p class="text-gray-600">
+      <strong>Booking Unit Name:</strong> {{ booking["Booking Unit Name"] }}
+    </p>
+    <p class="text-gray-600">
+      <strong>Booking Unit Number:</strong> {{ booking["Booking Unit Number"] }}
+    </p>
+    <p class="text-gray-600">
+      <strong>Booking Unit ID:</strong> {{ booking["Booking Unit ID"] }}
+    </p>
+    <p class="text-gray-600">
+      <strong>Unit Type ID:</strong> {{ booking["Unit Type ID"] }}
+    </p>
   </div>
 </div>
 
-<div *ngIf="!errorMessage && filteredBookings.length === 0" class="text-center text-gray-500 text-lg mt-4">
+<div
+  *ngIf="!errorMessage && filteredBookings.length === 0"
+  class="text-center text-gray-500 text-lg mt-4"
+>
   No bookings available for this unit type.
 </div>
-

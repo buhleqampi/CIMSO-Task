@@ -1,5 +1,4 @@
 export interface Unittype {
-
   'Unit Type ID': string;
   'Unit Type Code': string;
   'Unit Type Description': string;
@@ -12,6 +11,4 @@ export interface Unittype {
   'Unit Count': number;
   'Unit Type Image UIDs': string[];
   images?: string[];
-  
 }
-

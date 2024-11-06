@@ -1,70 +1,3 @@
-// import { Component } from '@angular/core';
-// import { BookingsService } from '../../services/bookings.service';
-// import { Bookings } from '../../interfaces/bookings';
-// import { ActivatedRoute } from '@angular/router';
-
-
-// @Component({
-//   selector: 'app-bookings',
-//   templateUrl: './bookings.component.html',
-//   styleUrl: './bookings.component.css'
-//   })
-// export class BookingsComponent {
-//   allBookings: Bookings[] = [];
-//   filteredBookings: Bookings[] =  []
-//   unitTypeId!:number
-//   error_code!: number;
-
-//   constructor(private bookingService: BookingsService ,  private route:ActivatedRoute) {}
-
-//   ngOnInit(): void {
-//     this.getBookingData()
-//     this.getId()
-
-//   }
-
-
-//   getId(){
-//       this.unitTypeId = Number(this.route.snapshot.paramMap.get('id'));
-//       console.log(this.unitTypeId);
-
-     
-//   }
-
- 
-
-
-//   getBookingData(){
-
-//         this.bookingService.getAllBookings().subscribe({
-//         next: (res_data)=>{
-//           console.log("Bookings Data Retrieved!! ",res_data.payload["Booking Units"])
-
-//           this.allBookings = res_data.payload["Booking Units"]
-//           this.filterBookings(this.unitTypeId)
-
-          
-//           this.error_code = res_data.error_code
-//           // this.bookings = res_data.slice(0, 4).map((booking: any) => ({
-
-//           },
-//         error: (err)=>{
-//         console.error("Could get bookings!", err)
-        
-//         }
-//       }) 
-//     }
-
-//     filterBookings(id: number){
-//       this.filteredBookings =  this.allBookings.filter((booking: Bookings)=>{
-//         const results = booking['Unit Type ID'] === id;
-//         console.log(booking['Unit Type ID'])
-//         return results;
-//       })
-//       console.log("ererer",this.filteredBookings)
-
-//     }
-//   }
 import { Component } from '@angular/core';
 import { BookingsService } from '../../services/bookings.service';
 import { Bookings } from '../../interfaces/bookings';
@@ -73,16 +6,19 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
-  styleUrls: ['./bookings.component.css']
+  styleUrls: ['./bookings.component.css'],
 })
 export class BookingsComponent {
   allBookings: Bookings[] = [];
   filteredBookings: Bookings[] = [];
   unitTypeId!: number;
   error_code!: number;
-  errorMessage: string = ''; // New property to hold error messages
+  errorMessage: string = '';
 
-  constructor(private bookingService: BookingsService, private route: ActivatedRoute) {}
+  constructor(
+    private bookingService: BookingsService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.getId();
@@ -91,53 +27,55 @@ export class BookingsComponent {
 
   getId() {
     this.unitTypeId = Number(this.route.snapshot.paramMap.get('id'));
-    console.log("Unit Type ID:", this.unitTypeId);
+    console.log('Unit Type ID:', this.unitTypeId);
   }
 
   getBookingData() {
     this.bookingService.getAllBookings().subscribe({
       next: (res_data) => {
-        console.log("Bookings Data Retrieved!!", res_data.payload["Booking Units"]);
+        console.log(
+          'Bookings Data Retrieved!!',
+          res_data.payload['Booking Units']
+        );
 
         this.error_code = res_data.error_code;
         if (this.error_code === 0) {
-          this.allBookings = res_data.payload["Booking Units"];
+          this.allBookings = res_data.payload['Booking Units'];
           this.filterBookings(this.unitTypeId);
         } else {
           this.handleErrorCode(this.error_code);
         }
       },
       error: (err) => {
-        console.error("Could not get bookings!", err);
-        this.errorMessage = "An unexpected error occurred. Please try again later.";
-      }
+        console.error('Could not get bookings!', err);
+        this.errorMessage =
+          'An unexpected error occurred. Please try again later.';
+      },
     });
   }
 
   filterBookings(id: number) {
     this.filteredBookings = this.allBookings.filter((booking: Bookings) => {
       const result = booking['Unit Type ID'] === id;
-      console.log("Filtered Booking Unit Type ID:", booking['Unit Type ID']);
+      console.log('Filtered Booking Unit Type ID:', booking['Unit Type ID']);
       return result;
     });
-    console.log("Filtered Bookings:", this.filteredBookings);
+    console.log('Filtered Bookings:', this.filteredBookings);
   }
 
   handleErrorCode(code: number) {
-    // Display appropriate message based on error code
     switch (code) {
       case -101:
-        this.errorMessage = "Failed to retrieve bookings: Unit type not found.";
+        this.errorMessage = 'Failed to retrieve bookings: Unit type not found.';
         break;
       case -102:
-        this.errorMessage = "Failed to retrieve bookings: Booking unit not found.";
+        this.errorMessage =
+          'Failed to retrieve bookings: Booking unit not found.';
         break;
       default:
-        this.errorMessage = "An unknown error occurred.";
+        this.errorMessage = 'An unknown error occurred.';
         break;
     }
-    console.log("Error Message:", this.errorMessage);
+    console.log('Error Message:', this.errorMessage);
   }
 }
-
-

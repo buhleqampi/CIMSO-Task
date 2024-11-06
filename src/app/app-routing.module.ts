@@ -5,15 +5,14 @@ import { BookingsComponent } from './components/bookings/bookings.component';
 import { BinaryRequestComponent } from './components/binary-request/binary-request.component';
 
 const routes: Routes = [
-  {path: "", redirectTo: "unitype", pathMatch: "full"},
-  {path: "bookings/:id", component: BookingsComponent},
-  {path: "unitype", component: UnitTypeComponent},
-  {path: "binary", component: BinaryRequestComponent},
-
+  { path: '', redirectTo: 'unitype', pathMatch: 'full' },
+  { path: 'bookings/:id', component: BookingsComponent },
+  { path: 'unitype', component: UnitTypeComponent },
+  { path: 'binary', component: BinaryRequestComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

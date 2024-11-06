@@ -1,23 +1,29 @@
-
-
-<div *ngIf="unitTypes && unitTypes.length > 0" class="flex flex-wrap justify-around gap-8">
-  <div 
-    *ngFor="let unitType of unitTypes" 
-    class="flex flex-col md:flex-row border border-gray-300 rounded-lg shadow-lg p-6 max-w-3xl bg-whitesmoke"
-    style="background-color: whitesmoke; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);"
+<div
+  *ngIf="unitTypes && unitTypes.length > 0"
+  class="flex flex-wrap justify-center gap-6 pt-8 pb-6"
+>
+  <div
+    *ngFor="let unitType of unitTypes"
+    class="flex flex-col md:flex-row border border-gray-300 rounded-lg shadow-lg p-4 w-full md:w-1/2 max-w-lg bg-whitesmoke"
+    style="
+      background-color: whitesmoke;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      height: 100%;
+    "
   >
     <div class="w-full md:w-1/3 p-2">
       <div *ngIf="unitType.images && unitType.images.length > 0">
-        <img 
+        <img
           *ngFor="let imageUrl of unitType.images"
-          [src]="imageUrl" 
-          alt="Unit Type Image" 
+          [src]="imageUrl"
+          alt="Unit Type Image"
           class="w-full h-auto rounded-lg mb-2"
           loading="lazy"
         />
       </div>
-      <div 
-        *ngIf="!unitType.images || unitType.images.length === 0" 
+      <div
+        *ngIf="!unitType.images || unitType.images.length === 0"
         class="w-full h-40 flex items-center justify-center bg-gray-200 text-gray-500 rounded-lg"
       >
         No Image Available
@@ -26,19 +32,31 @@
 
     <div class="w-full md:w-2/3 p-4 flex flex-col justify-between">
       <div class="text-gray-600 space-y-2">
-        <p><strong>Unit Type: {{ unitType['Unit Type ID'] }}</strong></p>
-        <p><strong>Code:</strong> {{ unitType['Unit Type Code'] }}</p>
-        <p><strong>Description:</strong> {{ unitType['Unit Type Description'] }}</p>
-        <p><strong>Category:</strong> {{ unitType['Unit Type Category'] }}</p>
-        <p><strong>Max Occupants:</strong> {{ unitType['Maximum Occupants'] }}</p>
-        <p><strong>Max Adults:</strong> {{ unitType['Maximum Adults'] }}</p>
-        <p><strong>Max Children:</strong> {{ unitType['Maximum Children'] }}</p>
-        <p><strong>Marketing Description:</strong> {{ unitType['Marketing Description'] }}</p>
-        <p><strong>Location ID:</strong> {{ unitType['Location ID'] }}</p>
-        <p><strong>Unit Count:</strong> {{ unitType['Unit Count'] }}</p>
-        <button type="button" class="bg-blue-500 text-white py-2 px-4 rounded" 
-          [routerLink]="'/bookings/' + unitType['Unit Type ID']" 
-          routerLinkActive="router-link-active">
+        <p class="text-gray-800 font-bold">
+          {{ unitType["Unit Type Description"] }}
+        </p>
+        <p>
+          <strong>Unit Type: {{ unitType["Unit Type ID"] }}</strong>
+        </p>
+        <p><strong>Code:</strong> {{ unitType["Unit Type Code"] }}</p>
+        <p><strong>Category:</strong> {{ unitType["Unit Type Category"] }}</p>
+        <p>
+          <strong>Max Occupants:</strong> {{ unitType["Maximum Occupants"] }}
+        </p>
+        <p><strong>Max Adults:</strong> {{ unitType["Maximum Adults"] }}</p>
+        <p><strong>Max Children:</strong> {{ unitType["Maximum Children"] }}</p>
+        <p>
+          <strong>Marketing Description:</strong>
+          {{ unitType["Marketing Description"] }}
+        </p>
+        <p><strong>Location ID:</strong> {{ unitType["Location ID"] }}</p>
+        <p><strong>Unit Count:</strong> {{ unitType["Unit Count"] }}</p>
+        <button
+          type="button"
+          class="bg-blue-500 text-white py-2 px-4 rounded"
+          [routerLink]="'/bookings/' + unitType['Unit Type ID']"
+          routerLinkActive="router-link-active"
+        >
           View Bookings
         </button>
       </div>
@@ -46,7 +64,9 @@
   </div>
 </div>
 
-<div *ngIf="!unitTypes || unitTypes.length === 0" class="text-center text-gray-500 text-lg mt-6">
+<div
+  *ngIf="!unitTypes || unitTypes.length === 0"
+  class="text-center text-gray-500 text-lg mt-6"
+>
   No unit types available.
 </div>
-
