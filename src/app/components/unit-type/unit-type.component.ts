@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UnitTypeService } from '../../services/unit-type.service';
 import { Unittype } from '../../interfaces/unittype';
 import { BinaryRequestService } from '../../services/binary-request.service';
+import { on } from 'node:stream';
 
 @Component({
   selector: 'app-unit-type',
@@ -10,6 +11,7 @@ import { BinaryRequestService } from '../../services/binary-request.service';
 })
 export class UnitTypeComponent implements OnInit {
   unitTypes: Unittype[] = [];
+  error_code!:number
 
   constructor(
     private unitTypeService: UnitTypeService, 
@@ -23,20 +25,30 @@ export class UnitTypeComponent implements OnInit {
   getUnitTypes() {
     this.unitTypeService.getUnitTypeInfo().subscribe({
       next: (res_data) => {
-     
-        this.unitTypes = res_data.payload["Unit Types"]
+        
+         
+          this.unitTypes = res_data.payload["Unit Types"].filter((oneObj: any)=>{
+            if(oneObj['Unit Type Image UIDs'].length >= 1){
+                return oneObj;
 
+            }            
+        })
+        
+        
+       
         this.unitTypes.forEach((unitType) => {
           if (unitType['Unit Type Image UIDs'] && unitType['Unit Type Image UIDs'].length > 0) {
             this.fetchImagesForUnitType(unitType);
           }
         });
+        
       },
       error: (err) => {
         console.error('Error fetching unit type info:', err);
       }
     });
   }
+
 
   fetchImagesForUnitType(unitType: Unittype) {
     unitType.images = unitType.images || []; 
