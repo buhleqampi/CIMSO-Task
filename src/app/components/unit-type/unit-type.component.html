@@ -1,43 +1,30 @@
-<!-- <div class="container">
-    <h1>Unit Types</h1>
-    <div *ngIf="loading">Loading...</div>
-    <div *ngFor="let unitType of unitTypes" class="unit-type">
-      <h2>{{ unitType.UnitTypeDescription }}</h2>
-      <p>Code: {{ unitType.UnitTypeCode }}</p>
-      <p>Category: {{ unitType.UnitTypeCategory }}</p>
-      <p>Maximum Occupants: {{ unitType.MaximumOccupants }}</p>
-      <p>Adults: {{ unitType.MaximumAdults }}</p>
-      <p>Children: {{ unitType.MaximumChildren }}</p>
-      <p>Units Available: {{ unitType.UnitCount }}</p>
-    </div>
-  </div> -->
-
-  <!-- <p>Hello {{unitTypes}}</p>
-  <div *ngIf="unitTypes">
-
-
-  </div> -->
-
-  <div *ngIf="unitTypeInfo && unitTypeInfo.length > 0" class="flex flex-wrap justify-center gap-6">
-    <div *ngFor="let unitType of unitTypeInfo" class="flex border border-gray-200 rounded-lg shadow-lg p-4 max-w-3xl bg-white">
-      
-      <!-- Image Section -->
-      <div class="w-1/3 p-2">
+<div *ngIf="unitTypes && unitTypes.length > 0" class="flex flex-wrap justify-center gap-8">
+  <div 
+    *ngFor="let unitType of unitTypes" 
+    class="flex flex-col md:flex-row border border-gray-300 rounded-lg shadow-lg p-6 max-w-3xl bg-whitesmoke"
+    style="background-color: whitesmoke; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);"
+  >
+    <div class="w-full md:w-1/3 p-2">
+      <div *ngIf="unitType.images && unitType.images.length > 0">
         <img 
-          *ngIf="unitType['Unit Type Image UIDs'] && unitType['Unit Type Image UIDs'].length > 0"
-          [src]="'api/get_image/' + unitType['Unit Type Image UIDs'][0]" 
+          *ngFor="let imageUrl of unitType.images"
+          [src]="imageUrl" 
           alt="Unit Type Image" 
-          class="w-full h-auto rounded-lg"
+          class="w-full h-auto rounded-lg mb-2"
+          loading="lazy"
         />
-        <div *ngIf="!unitType['Unit Type Image UIDs'] || unitType['Unit Type Image UIDs'].length === 0" 
-             class="w-full h-40 flex items-center justify-center bg-gray-100 text-gray-500">
-          No Image Available
-        </div>
       </div>
-  
-      <!-- Info Section -->
-      <div class="w-2/3 p-4 flex flex-col justify-between">
-        <h2 class="text-2xl font-bold mb-2">Unit Type: {{ unitType['Unit Type ID'] }}</h2>
+      <div 
+        *ngIf="!unitType.images || unitType.images.length === 0" 
+        class="w-full h-40 flex items-center justify-center bg-gray-200 text-gray-500 rounded-lg"
+      >
+        No Image Available
+      </div>
+    </div>
+
+    <div class="w-full md:w-2/3 p-4 flex flex-col justify-between">
+      <div class="text-gray-600 space-y-2">
+        <p><strong>Unit Type: {{ unitType['Unit Type ID'] }}</strong></p>
         <p><strong>Code:</strong> {{ unitType['Unit Type Code'] }}</p>
         <p><strong>Description:</strong> {{ unitType['Unit Type Description'] }}</p>
         <p><strong>Category:</strong> {{ unitType['Unit Type Category'] }}</p>
@@ -48,13 +35,10 @@
         <p><strong>Location ID:</strong> {{ unitType['Location ID'] }}</p>
         <p><strong>Unit Count:</strong> {{ unitType['Unit Count'] }}</p>
       </div>
-  
     </div>
   </div>
-  
-  <div *ngIf="!unitTypeInfo || unitTypeInfo.length === 0" class="text-center text-gray-500">
-    No unit types available.
-  </div>
-  
+</div>
 
-  
+<div *ngIf="!unitTypes || unitTypes.length === 0" class="text-center text-gray-500 text-lg mt-6">
+  No unit types available.
+</div>

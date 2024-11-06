@@ -8,7 +8,7 @@ import { BinaryRequestService } from '../../services/binary-request.service';
 })
 export class BinaryRequestComponent implements OnInit {
 
-  @Input() objectId: string = '';
+  @Input() objectId: string = '020000009FA500800000000000000000';
   imageDataUrl: string | null = null;
 
   binaryRequest:any;
@@ -28,14 +28,7 @@ export class BinaryRequestComponent implements OnInit {
 
       this.binaryRequestServ.getBinaryRequest(this.objectId).subscribe({
         next: (response:any) => {
-          // if (response && response.payload) {
-
-          //   this.imageDataUrl = `data:image/jpeg;base64, ${response.payload}`;
-          // }
-          // },
-          // (error) => {
-          //   console.error('Error fetching binary request:', error);
-          // }
+    
             this.imageDataUrl = `data:image/jpeg;base64,${response}`;
             console.log("Hello",response);
           },
