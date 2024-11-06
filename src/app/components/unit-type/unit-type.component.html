@@ -1,4 +1,4 @@
-<div *ngIf="unitTypes && unitTypes.length > 0" class="flex flex-wrap justify-center gap-8">
+<div *ngIf="unitTypes && unitTypes.length > 0" class="flex flex-wrap justify-around gap-8">
   <div 
     *ngFor="let unitType of unitTypes" 
     class="flex flex-col md:flex-row border border-gray-300 rounded-lg shadow-lg p-6 max-w-3xl bg-whitesmoke"
@@ -34,6 +34,11 @@
         <p><strong>Marketing Description:</strong> {{ unitType['Marketing Description'] }}</p>
         <p><strong>Location ID:</strong> {{ unitType['Location ID'] }}</p>
         <p><strong>Unit Count:</strong> {{ unitType['Unit Count'] }}</p>
+        <button type="button" class="bg-blue-500 text-white py-2 px-4 rounded" 
+          [routerLink]="'/bookings/' + unitType['Unit Type ID']" 
+          routerLinkActive="router-link-active">
+          View Bookings
+        </button>
       </div>
     </div>
   </div>
@@ -42,3 +47,4 @@
 <div *ngIf="!unitTypes || unitTypes.length === 0" class="text-center text-gray-500 text-lg mt-6">
   No unit types available.
 </div>
+

@@ -5,8 +5,8 @@ import { BookingsComponent } from './components/bookings/bookings.component';
 import { BinaryRequestComponent } from './components/binary-request/binary-request.component';
 
 const routes: Routes = [
-  {path: "", redirectTo: "bookings", pathMatch: "full"},
-  {path: "bookings", component: BookingsComponent},
+  {path: "", redirectTo: "unitype", pathMatch: "full"},
+  {path: "bookings/:id", component: BookingsComponent},
   {path: "unitype", component: UnitTypeComponent},
   {path: "binary", component: BinaryRequestComponent},
 
