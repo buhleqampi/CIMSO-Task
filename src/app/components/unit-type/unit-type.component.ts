@@ -9,51 +9,32 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./unit-type.component.css']
 })
 export class UnitTypeComponent implements OnInit {
-  // unitTypes: Unittype[] = [];
-  // loading: boolean = true;
-  // test: any
-  unitTypes:Unittype[] = []
 
-  unitTypeInfo: any;
+  unitTypes: Unittype[] = [];
 
   constructor(private unitTypeService: UnitTypeService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.getUnitTypes()
-
+    this.getUnitTypes();
   }
 
-  getOne(){
-    const id = this.route.snapshot.paramMap.get('id')
-    console.log(id)
+  getOne() {
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
   }
 
-  // getUnitTypes(){
-
-  // this.unitTypeService.getUnitTypeInfo().subscribe({
-  // next:(res_data) => {
-  // console.log("Unit Type Info Data Retrieved!!! ", res_data)
-  // this.unitTypeInfo = res_data.error_code
-  // },
-  // error: (err) => {
-  // console.error('Error fetching unit type info:', err);
-  // }
-
-  // })
-
-  // }
   getUnitTypes() {
     this.unitTypeService.getUnitTypeInfo().subscribe({
       next: (res_data) => {
-        console.log("Unit Type Info Data Retrieved!!! ", res_data);
-        this.unitTypeInfo = res_data.data || []; 
+        console.log("Unit Type Info Data Retrieved!!! ", res_data.payload["Unit Types"]);
+        this.unitTypes = res_data.payload["Unit Types"]; 
       },
       error: (err) => {
         console.error('Error fetching unit type info:', err);
       }
     });
   }
-  
-  }
+}
+
 
 
