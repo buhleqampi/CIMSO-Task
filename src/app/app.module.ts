@@ -7,6 +7,9 @@ import { UnitTypeComponent } from './components/unit-type/unit-type.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { BinaryRequestComponent } from './components/binary-request/binary-request.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SingleComponent } from './components/single/single.component';
+import { BookComponent } from './components/book/book.component';
 
 
 @NgModule({
@@ -14,7 +17,10 @@ import { BinaryRequestComponent } from './components/binary-request/binary-reque
     AppComponent,
     UnitTypeComponent,
     BookingsComponent,
-    BinaryRequestComponent
+    BinaryRequestComponent,
+    NavbarComponent,
+    SingleComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
