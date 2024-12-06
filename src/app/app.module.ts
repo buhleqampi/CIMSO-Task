@@ -10,6 +10,7 @@ import { BinaryRequestComponent } from './components/binary-request/binary-reque
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SingleComponent } from './components/single/single.component';
 import { BookComponent } from './components/book/book.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { BookComponent } from './components/book/book.component';
     BinaryRequestComponent,
     NavbarComponent,
     SingleComponent,
-    BookComponent
+    BookComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
