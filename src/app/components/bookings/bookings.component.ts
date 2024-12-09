@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BookingsService } from '../../services/bookings.service';
 import { Bookings } from '../../interfaces/bookings';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-bookings',
@@ -17,9 +17,13 @@ export class BookingsComponent {
 
   constructor(
     private bookingService: BookingsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
+  goBack(): void {
+    this.router.navigate(['/unitype']);
+  }
   ngOnInit(): void {
     this.getId();
     this.getBookingData();
